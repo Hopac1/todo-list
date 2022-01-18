@@ -12,17 +12,19 @@
 </head>
 <body>
     <div class="main">
-        <div class="left-nav">
+        <div class="left-panel">
                 <!-- User -->
                 <div class="projects-header">
                     <h1>Projects</h1>
                     <hr>
                 </div>
                 <div class="projects-container">
+                    <!-- Generate this div and contents within Javascript instead of HTML-->
                     <div class="project">
                         Example Project
                         <i class="fas fa-trash-alt"></i>
                     </div>
+                    <!-- ---------- -->
                 </div>
 
                 <button class="add-project">
@@ -34,11 +36,38 @@
             </div>
         </div>
         <div class="main-panel">
-            <div class="projects-panel">
+            <div class="project-info">
                 <!-- Default Project -->
+                <div class="project-info-title">
+                    <h2>Example Project</h2>
+                </div>
+                <div class="project-info-description">
+                    <p>This is an example of a description.</p>
+                </div>
+                <div class="todos-container">
+                    <hr>
+                    <div class="todo">
+                        <div class="task-panel-left">
+                            <i class="far fa-circle"></i>
+                            <p>First to-do</p>
+                        </div>
+                        <div class="task-panel-right">
+                            <p>5 mins ago</p>
+                        </div>
+                    </div>
+                    <div class="todo">
+                        <div class="task-panel-left">
+                            <i class="far fa-circle"></i>
+                            <p>Second to-do</p>
+                        </div>
+                        <div class="task-panel-right">
+                            <p>5 mins ago</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 </html>
