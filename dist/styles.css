@@ -24,10 +24,6 @@ button:hover {
     cursor: pointer;
 }
 
-h1 {
-
-}
-
 /* LEFT PANEL */
 
 .left-panel {
@@ -104,7 +100,7 @@ h1 {
     border-color: var(--light-primary);
 }
 
-.task-panel-left{
+.todo-panel-left{
     display: flex;
     align-items: center;
     gap: 10px;
