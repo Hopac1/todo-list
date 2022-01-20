@@ -1,3 +1,10 @@
-// import dom-handler.js here and test functions
+import { createTodo } from "./modules/dom-handler";
 
 console.log("henlo world");
+
+createTodo("do laundry");
+
+createTodo("watch tv");
+
+createTodo("watch tv");
+
