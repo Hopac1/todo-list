@@ -61,12 +61,35 @@ button:hover {
 
 }
 
-
 .fa-plus {
     margin-right: 10px;
     color: var(--check-double-color);
 }
 
+.add-project.active {
+    display: none;
+}
+
+/* LEFT PANEL POP-UP */
+.add-project-popup {
+    display: none;
+    /* display: flex; */
+    text-align: center;
+    /* flex-direction: column;
+    align-items: center; */
+    /* gap: 10px; */
+}
+
+.add-project-popup.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 10px;
+}
+
+.add-project-popup.active {
+    display: block;
+}
 /* MAIN PANEL */
 
 .main {
