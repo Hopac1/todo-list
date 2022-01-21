@@ -1,5 +1,6 @@
 const todoContainer = document.querySelector(".todos-container");
 
+
 function createElement(elementName, className) {
     const element = document.createElement(elementName);
     element.classList = className;
@@ -43,5 +44,11 @@ function createTodo(todoText) {
     todoContainer.appendChild(todo);
 };
 
+function removeTodo() {
+    // remove to-do
+}
 
-export {createElement, changeTextContent, appendElement, createTodo};
+function setElementToActive(element) {
+    return element.classList.toggle("active");
+}
+export {createElement, changeTextContent, appendElement, createTodo, setElementToActive};
