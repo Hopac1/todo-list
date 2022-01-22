@@ -58,7 +58,10 @@ button:hover {
     margin: 10px 20px 10px 20px;
     display: flex;
     justify-content: space-between;
+}
 
+.project:hover {
+    background-color: var(--light-tertiary);
 }
 
 .fa-plus {
