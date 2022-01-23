@@ -14,3 +14,5 @@ Project to-dos:
 
 - Let user change to-do info upon clicking of chosen info.
 
+- Add LinkedIn to footer.
+
