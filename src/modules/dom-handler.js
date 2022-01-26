@@ -11,10 +11,6 @@ function changeTextContent(element, string) {
     element.textContent = string;
 };
 
-function appendElement(parentElement, childElement) {
-    return parentElement.appendChild(childElement);
-};
-
 function createTodo(todoText) {
     const todo = createElement("div", "todo");
     const todoPanelLeft = createElement("div", "todo-panel-left");
@@ -46,9 +42,28 @@ function createTodo(todoText) {
 
 function removeTodo() {
     // remove to-do
-}
+};
+
+function submitProject() {
+    const projectsContainer = document.querySelector(".projects-container");
+    const projectNameValue = document.getElementById("project-name-popup").value;
+    const projectDiv = createElement("div", "project");
+    projectDiv.textContent = projectNameValue;
+
+    const bin = createElement("i", "fas fa-trash-alt");
+    projectDiv.appendChild(bin);
+    projectsContainer.appendChild(projectDiv);
+
+    setElementToActive(addProjectBtn);
+    setElementToActive(addProjectPopup);
+};
+
+function toggleAddTodoPopup() {
+    const addTodoBtn = document.querySelector(".add-todo");
+
+};
 
 function setElementToActive(element) {
     return element.classList.toggle("active");
 }
-export {createElement, changeTextContent, appendElement, createTodo, setElementToActive};
+export {createElement, changeTextContent, createTodo, setElementToActive, submitProject};
