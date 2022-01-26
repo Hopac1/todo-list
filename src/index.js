@@ -5,7 +5,7 @@ console.log("henlo world");
 let projects = [];
 
 const defaultProject = createProject();
-defaultProject.projectName = "Example Project";
+defaultProject.projectName = "Default Project";
 defaultProject.projectDescription = "This is a description for a project";
 defaultProject.projectTodos += createTodo("do laundry");
 projects += defaultProject;
@@ -29,6 +29,7 @@ const addTodoBtn = document.querySelector(".add-todo");
 const addTodoPopup = document.querySelector(".add-todo-popup");
 const cancelTodoPopup = document.querySelector(".cancel-todo");
 
+// Show to-do popup when user clicks on add to-do button
 addTodoBtn.addEventListener("click", () => {
     // toggleAddTodoPopup();
     setElementToActive(addTodoBtn);
@@ -38,12 +39,6 @@ addTodoBtn.addEventListener("click", () => {
 addProjectBtn.addEventListener("click", () => {
     setElementToActive(addProjectBtn);
     setElementToActive(addProjectPopup);
-    let project = createProject();
-    project.projectName = document.getElementById("project-name-popup").value;
-    project.projectDescription = document.getElementById("project-description-popup").value;
-    
-    // storeInfo(project);
-    // STORE SUBMITTED INFO, display on page when project is clicked
 });
 
 cancelTodoPopup.addEventListener("click", () => {
@@ -57,7 +52,19 @@ cancelProjectPopup.addEventListener("click", () => {
 });
 
 // Add project to DOM under Projects header
-submitProjectBtn.addEventListener("click", submitProject);
+submitProjectBtn.addEventListener("click", () => {
+    let project = createProject();
+    project.projectName = document.getElementById("project-name-popup").value;
+    project.projectDescription = document.getElementById("project-description-popup").value;
+    let noSpaces = project.projectName.replace(/\s+/g, '');
+    console.log(noSpaces);
+    // store project name without spaces in a variable and add to projects global list
+    
+    
+    // storeInfo(project);
+    // STORE SUBMITTED INFO, display on page when project is clicked
+    submitProject();
+});
 
 // projectsDivs.forEach(project => project.addEventListener("click", () => {
 //     clearPage();
