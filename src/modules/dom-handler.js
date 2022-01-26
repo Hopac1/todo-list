@@ -47,13 +47,16 @@ function removeTodo() {
 function submitProject() {
     const projectsContainer = document.querySelector(".projects-container");
     const projectNameValue = document.getElementById("project-name-popup").value;
+    
     const projectDiv = createElement("div", "project");
     projectDiv.textContent = projectNameValue;
-
+    
     const bin = createElement("i", "fas fa-trash-alt");
     projectDiv.appendChild(bin);
     projectsContainer.appendChild(projectDiv);
-
+    
+    const addProjectBtn = document.querySelector(".add-project");
+    const addProjectPopup = document.querySelector(".add-project-popup");
     setElementToActive(addProjectBtn);
     setElementToActive(addProjectPopup);
 };
