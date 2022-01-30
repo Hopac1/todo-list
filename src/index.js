@@ -34,21 +34,21 @@ addTodoBtn.addEventListener("click", () => {
     // toggleAddTodoPopup();
     setElementToActive(addTodoBtn);
     setElementToActive(addTodoPopup);
-
-    cancelTodoPopup.addEventListener("click", () => {
-        setElementToActive(addTodoBtn);
-        setElementToActive(addTodoPopup);
-    });
 });
 
 addProjectBtn.addEventListener("click", () => {
     setElementToActive(addProjectBtn);
     setElementToActive(addProjectPopup);
+});
 
-    cancelProjectPopup.addEventListener("click", () => {
-        setElementToActive(addProjectPopup);
-        setElementToActive(addProjectBtn);
-    });
+cancelTodoPopup.addEventListener("click", () => {
+    setElementToActive(addTodoBtn);
+    setElementToActive(addTodoPopup);
+});
+
+cancelProjectPopup.addEventListener("click", () => {
+    setElementToActive(addProjectPopup);
+    setElementToActive(addProjectBtn);
 });
 
 // Add project to DOM under Projects header
@@ -97,3 +97,7 @@ function createProject() {
 //     <p>${projectClicked}</p></div><div class="todos-container"><hr></div>
 //     `
 // };
+
+// Change new project popup to require project description. Add title and desc to an object's keys. 
+// When user clicks on project in side bar, generate said project's info from an object. 
+// Maybe create new module called projects.js for viewing the selected project.
