@@ -34,21 +34,21 @@ addTodoBtn.addEventListener("click", () => {
     // toggleAddTodoPopup();
     setElementToActive(addTodoBtn);
     setElementToActive(addTodoPopup);
+
+    cancelTodoPopup.addEventListener("click", () => {
+        setElementToActive(addTodoBtn);
+        setElementToActive(addTodoPopup);
+    });
 });
 
 addProjectBtn.addEventListener("click", () => {
     setElementToActive(addProjectBtn);
     setElementToActive(addProjectPopup);
-});
 
-cancelTodoPopup.addEventListener("click", () => {
-    setElementToActive(addTodoBtn);
-    setElementToActive(addTodoPopup);
-});
-
-cancelProjectPopup.addEventListener("click", () => {
-    setElementToActive(addProjectPopup);
-    setElementToActive(addProjectBtn);
+    cancelProjectPopup.addEventListener("click", () => {
+        setElementToActive(addProjectPopup);
+        setElementToActive(addProjectBtn);
+    });
 });
 
 // Add project to DOM under Projects header
@@ -57,19 +57,20 @@ submitProjectBtn.addEventListener("click", () => {
     project.projectName = document.getElementById("project-name-popup").value;
     project.projectDescription = document.getElementById("project-description-popup").value;
     let noSpaces = project.projectName.replace(/\s+/g, '');
-    console.log(noSpaces);
-    // store project name without spaces in a variable and add to projects global list
-    
+    console.log(noSpaces);    
     
     // storeInfo(project);
     // STORE SUBMITTED INFO, display on page when project is clicked
     submitProject();
 });
 
-// projectsDivs.forEach(project => project.addEventListener("click", () => {
-//     clearPage();
-//     loadProject(this);
-// }));
+projectsDivs.forEach(project => { project.addEventListener("click", () => {
+    setElementToActive(project);
+    // load the project info for whatever div with project class has active 
+
+    // clearPage();
+    // loadProject(this);
+})});
 
 // function clearPage() {
 //     const projectInfoDiv = document.querySelector(".todos-container");
@@ -96,7 +97,3 @@ function createProject() {
 //     <p>${projectClicked}</p></div><div class="todos-container"><hr></div>
 //     `
 // };
-
-// Change new project popup to require project description. Add title and desc to an object's keys. 
-// When user clicks on project in side bar, generate said project's info from an object. 
-// Maybe create new module called projects.js for viewing the selected project.
