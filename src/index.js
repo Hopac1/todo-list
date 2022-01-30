@@ -8,7 +8,7 @@ const defaultProject = createProject();
 defaultProject.projectName = "Default Project";
 defaultProject.projectDescription = "This is a description for a project";
 defaultProject.projectTodos += createTodo("do laundry");
-projects += defaultProject;
+projects.push(defaultProject);
 
 defaultProject.projectTodos += createTodo("watch tv");
 
@@ -53,31 +53,46 @@ cancelProjectPopup.addEventListener("click", () => {
 
 // Add project to DOM under Projects header
 submitProjectBtn.addEventListener("click", () => {
-    let project = createProject();
-    project.projectName = document.getElementById("project-name-popup").value;
-    project.projectDescription = document.getElementById("project-description-popup").value;
-    let noSpaces = project.projectName.replace(/\s+/g, '');
-    console.log(noSpaces);    
+    let newProject = createProject();
+    newProject.projectName = document.getElementById("project-name-popup").value;
+    newProject.projectDescription = document.getElementById("project-description-popup").value;
+    projects.push(newProject);
+    consoleLogProjects();
+
+    let noSpaces = newProject.projectName.replace(/\s+/g, '');
+    console.log(noSpaces); 
     
     // storeInfo(project);
     // STORE SUBMITTED INFO, display on page when project is clicked
     submitProject();
 });
 
-projectsDivs.forEach(project => { project.addEventListener("click", () => {
-    setElementToActive(project);
-    // load the project info for whatever div with project class has active 
+document.addEventListener("click", function (event) {
+    if (event.target.classList.contains("project")) {
+        // setElementToActive(event.target);
+        event.target.classList.toggle("active");
+        // load the project info for whatever div with project class has active
+        
+            // get textcontent of clicked div
+            let divTextContent = event.target.textContent;
+            console.log("div text content:" + divTextContent)
+        
+            // loop through each projectName in projects list until it matches textcontent of clicked div
+        
+            // load matching element's projectName, Description and Todos to page after clearing page of current todos
+    };
+});
 
-    // clearPage();
-    // loadProject(this);
-})});
+function clearPage() {
+    const projectInfoDiv = document.querySelector(".todos-container");
+    while (projectInfoDiv.firstChild) {
+        projectInfoDiv.removeChild(projectInfoDiv.lastChild);
+    }
+};
 
-// function clearPage() {
-//     const projectInfoDiv = document.querySelector(".todos-container");
-//     while (projectInfoDiv.firstChild) {
-//         projectInfoDiv.removeChild(projectInfoDiv.lastChild);
-//     }
-// };
+function consoleLogProjects() {
+    projects.forEach(element => console.log(element.projectName));
+};
 
 function createProject() {
     return {
