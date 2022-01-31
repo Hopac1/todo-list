@@ -1,6 +1,6 @@
 import { createElement, createTodo, setElementToActive, submitProject} from "./modules/dom-handler";
 
-console.log("henlo world");
+console.log("hello world");
 //store all projects in a global list/object
 let projects = [];
 
@@ -14,11 +14,6 @@ defaultProject.projectTodos += createTodo("watch tv");
 
 defaultProject.projectTodos += createTodo("finish homework");
 
-// createTodo("do laundry");
-
-// createTodo("watch tv");
-
-// createTodo("watch tv");
 const addProjectBtn = document.querySelector(".add-project");
 const addProjectPopup = document.querySelector(".add-project-popup");
 const submitProjectBtn = document.querySelector(".submit-project");
@@ -57,10 +52,7 @@ submitProjectBtn.addEventListener("click", () => {
     newProject.projectName = document.getElementById("project-name-popup").value;
     newProject.projectDescription = document.getElementById("project-description-popup").value;
     projects.push(newProject);
-    consoleLogProjects();
-
-    let noSpaces = newProject.projectName.replace(/\s+/g, '');
-    console.log(noSpaces); 
+    projects.forEach(element => console.log(element.projectName));
     
     // storeInfo(project);
     // STORE SUBMITTED INFO, display on page when project is clicked
@@ -69,17 +61,16 @@ submitProjectBtn.addEventListener("click", () => {
 
 document.addEventListener("click", function (event) {
     if (event.target.classList.contains("project")) {
-        // setElementToActive(event.target);
         event.target.classList.toggle("active");
         // load the project info for whatever div with project class has active
         
-            // get textcontent of clicked div
+            // get text content of clicked div
             let divTextContent = event.target.textContent;
             console.log("div text content:" + divTextContent)
         
-            // loop through each projectName in projects list until it matches textcontent of clicked div
+            // loop through each projectName in projects list until it matches text content of clicked div
         
-            // load matching element's projectName, Description and Todos to page after clearing page of current todos
+            // load matching element's projectName, Description and To-dos to page after clearing page of current to-dos
     };
 });
 
@@ -87,11 +78,7 @@ function clearPage() {
     const projectInfoDiv = document.querySelector(".todos-container");
     while (projectInfoDiv.firstChild) {
         projectInfoDiv.removeChild(projectInfoDiv.lastChild);
-    }
-};
-
-function consoleLogProjects() {
-    projects.forEach(element => console.log(element.projectName));
+    };
 };
 
 function createProject() {
@@ -112,7 +99,3 @@ function createProject() {
 //     <p>${projectClicked}</p></div><div class="todos-container"><hr></div>
 //     `
 // };
-
-// Change new project popup to require project description. Add title and desc to an object's keys. 
-// When user clicks on project in side bar, generate said project's info from an object. 
-// Maybe create new module called projects.js for viewing the selected project.
