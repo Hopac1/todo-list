@@ -19,7 +19,6 @@ const addProjectPopup = document.querySelector(".add-project-popup");
 const submitProjectBtn = document.querySelector(".submit-project");
 
 const cancelProjectPopup = document.querySelector(".cancel-project");
-const projectsDivs = document.querySelectorAll(".project");
 const addTodoBtn = document.querySelector(".add-todo");
 const addTodoPopup = document.querySelector(".add-todo-popup");
 const cancelTodoPopup = document.querySelector(".cancel-todo");
@@ -66,12 +65,22 @@ document.addEventListener("click", function (event) {
         
             // get text content of clicked div
             let divTextContent = event.target.textContent;
-            console.log("div text content:" + divTextContent)
         
             // loop through each projectName in projects list until it matches text content of clicked div
-        
-            // load matching element's projectName, Description and To-dos to page after clearing page of current to-dos
-    };
+            projects.forEach(project => {
+                if (project.projectName == divTextContent) {
+                    console.log(`${project.projectName} (projects list) is the same as ${divTextContent} (clicked div)`);
+                    // load matching element's projectName, Description and To-dos to page after clearing page of current to-dos
+
+                };
+            });
+    } else if (event.target.classList.contains("submit-todo")) {
+        let todoText = document.querySelector(".todo-name").value;
+        console.log(todoText)
+        createTodo(todoText);
+        setElementToActive(addTodoBtn);
+        setElementToActive(addTodoPopup);
+    }
 });
 
 function clearPage() {
