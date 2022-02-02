@@ -4,15 +4,15 @@ console.log("hello world");
 //store all projects in a global list/object
 let projects = [];
 
-const defaultProject = createProject();
-defaultProject.projectName = "Default Project";
-defaultProject.projectDescription = "This is a description for a project";
-defaultProject.projectTodos += createTodo("do laundry");
-projects.push(defaultProject);
+// const defaultProject = createProject();
+// defaultProject.projectName = "Default Project";
+// defaultProject.projectDescription = "This is a description for a project";
+// defaultProject.projectTodos += createTodo("do laundry");
+// projects.push(defaultProject);
 
-defaultProject.projectTodos += createTodo("watch tv");
+// defaultProject.projectTodos += createTodo("watch tv");
 
-defaultProject.projectTodos += createTodo("finish homework");
+// defaultProject.projectTodos += createTodo("finish homework");
 
 const addProjectBtn = document.querySelector(".add-project");
 const addProjectPopup = document.querySelector(".add-project-popup");
@@ -59,29 +59,58 @@ submitProjectBtn.addEventListener("click", () => {
 });
 
 document.addEventListener("click", function (event) {
+    // If user clicks on project 
     if (event.target.classList.contains("project")) {
-        event.target.classList.toggle("active");
+        setProjectToActive(event.target);
+        // if (event.target.classList.contains("active")) {
+        //     console.log("return statement here");
+        // } else {
+        //     event.target.classList.toggle("active");
+        //     // load the project info for whatever div with project class has active
+            
+        //         // get text content of clicked div
+        //         let divTextContent = event.target.textContent;
+            
+        //         // loop through each projectName in projects list until it matches text content of clicked div
+        //         projects.forEach(project => {
+        //             if (project.projectName == divTextContent) {
+        //                 console.log(`${project.projectName} (projects list) is the same as ${divTextContent} (clicked div)`);
+        //                 // load matching element's projectName, Description and To-dos to page after clearing page of current to-dos
+                        
+        //             };
+        //         });
+        // }
+    // If user clicks submit to-do
+    } else if (event.target.classList.contains("submit-todo")) {
+        let todoText = document.querySelector(".todo-name").value;
+        console.log(todoText);
+        // add to project that has active class
+        createTodo(todoText);
+        setElementToActive(addTodoBtn);
+        setElementToActive(addTodoPopup);
+    }
+});
+
+function setProjectToActive(projectEventTarget) {
+    if (projectEventTarget.classList.contains("active")) {
+        console.log("return statement here");
+    } else {
+        projectEventTarget.classList.toggle("active");
         // load the project info for whatever div with project class has active
         
             // get text content of clicked div
-            let divTextContent = event.target.textContent;
+            let divTextContent = projectEventTarget.textContent;
         
             // loop through each projectName in projects list until it matches text content of clicked div
             projects.forEach(project => {
                 if (project.projectName == divTextContent) {
                     console.log(`${project.projectName} (projects list) is the same as ${divTextContent} (clicked div)`);
                     // load matching element's projectName, Description and To-dos to page after clearing page of current to-dos
-
+                    
                 };
             });
-    } else if (event.target.classList.contains("submit-todo")) {
-        let todoText = document.querySelector(".todo-name").value;
-        console.log(todoText)
-        createTodo(todoText);
-        setElementToActive(addTodoBtn);
-        setElementToActive(addTodoPopup);
     }
-});
+}
 
 function clearPage() {
     const projectInfoDiv = document.querySelector(".todos-container");
