@@ -59,6 +59,7 @@ button:hover {
     display: flex;
     justify-content: space-between;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .project:hover {
