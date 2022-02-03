@@ -61,25 +61,12 @@ submitProjectBtn.addEventListener("click", () => {
 document.addEventListener("click", function (event) {
     // If user clicks on project 
     if (event.target.classList.contains("project")) {
+        // if another project div already has 'active' class, remove it
+        removeActiveFromAllProjects()
+        
         setProjectToActive(event.target);
-        // if (event.target.classList.contains("active")) {
-        //     console.log("return statement here");
-        // } else {
-        //     event.target.classList.toggle("active");
-        //     // load the project info for whatever div with project class has active
-            
-        //         // get text content of clicked div
-        //         let divTextContent = event.target.textContent;
-            
-        //         // loop through each projectName in projects list until it matches text content of clicked div
-        //         projects.forEach(project => {
-        //             if (project.projectName == divTextContent) {
-        //                 console.log(`${project.projectName} (projects list) is the same as ${divTextContent} (clicked div)`);
-        //                 // load matching element's projectName, Description and To-dos to page after clearing page of current to-dos
-                        
-        //             };
-        //         });
-        // }
+        // load matching element's projectName, Description and To-dos to page after clearing page of current to-dos
+
     // If user clicks submit to-do
     } else if (event.target.classList.contains("submit-todo")) {
         let todoText = document.querySelector(".todo-name").value;
@@ -93,8 +80,9 @@ document.addEventListener("click", function (event) {
 
 function setProjectToActive(projectEventTarget) {
     if (projectEventTarget.classList.contains("active")) {
-        console.log("return statement here");
+        return;
     } else {
+        // remove active class from other elements
         projectEventTarget.classList.toggle("active");
         // load the project info for whatever div with project class has active
         
@@ -105,11 +93,18 @@ function setProjectToActive(projectEventTarget) {
             projects.forEach(project => {
                 if (project.projectName == divTextContent) {
                     console.log(`${project.projectName} (projects list) is the same as ${divTextContent} (clicked div)`);
-                    // load matching element's projectName, Description and To-dos to page after clearing page of current to-dos
+                    
                     
                 };
             });
-    }
+    };
+};
+
+function removeActiveFromAllProjects() {
+    const projectsDivs = document.querySelectorAll(".project");
+    for (let i = 0; i < projectsDivs.length; i++) {
+        projectsDivs[i].classList.remove("active");
+    };
 }
 
 function clearPage() {
