@@ -61,20 +61,28 @@ submitProjectBtn.addEventListener("click", () => {
 document.addEventListener("click", function (event) {
     // If user clicks on project 
     if (event.target.classList.contains("project")) {
-        // if another project div already has 'active' class, remove it
-        removeActiveFromAllProjects()
-        
+        removeActiveFromAllProjects();
         setProjectToActive(event.target);
+        let currentActive = event.target;
         // load matching element's projectName, Description and To-dos to page after clearing page of current to-dos
+        loadProjectInfo();
 
     // If user clicks submit to-do
     } else if (event.target.classList.contains("submit-todo")) {
         let todoText = document.querySelector(".todo-name").value;
-        console.log(todoText);
+        // console.log(currentActive);
         // add to project that has active class
+        let activeProject = document.querySelector(".active");
+        console.log(activeProject);
+        projects.forEach(project => {
+            if (project.projectName == activeProject.textContent) {
+                project.projectTodos.push(todoText);
+            }
+        })
         createTodo(todoText);
         setElementToActive(addTodoBtn);
         setElementToActive(addTodoPopup);
+        console.log(projects[0].projectTodos);
     }
 });
 
@@ -82,21 +90,7 @@ function setProjectToActive(projectEventTarget) {
     if (projectEventTarget.classList.contains("active")) {
         return;
     } else {
-        // remove active class from other elements
         projectEventTarget.classList.toggle("active");
-        // load the project info for whatever div with project class has active
-        
-            // get text content of clicked div
-            let divTextContent = projectEventTarget.textContent;
-        
-            // loop through each projectName in projects list until it matches text content of clicked div
-            projects.forEach(project => {
-                if (project.projectName == divTextContent) {
-                    console.log(`${project.projectName} (projects list) is the same as ${divTextContent} (clicked div)`);
-                    
-                    
-                };
-            });
     };
 };
 
@@ -105,7 +99,7 @@ function removeActiveFromAllProjects() {
     for (let i = 0; i < projectsDivs.length; i++) {
         projectsDivs[i].classList.remove("active");
     };
-}
+};
 
 function clearPage() {
     const projectInfoDiv = document.querySelector(".todos-container");
