@@ -95,10 +95,11 @@ function loadProject(project) {
 
 
     if (project.projectTodos) {
-        for (let todo in project.projectTodos) {
+        project.projectTodos.forEach(todo => {
             console.log(todo);
             createTodo(todo);
-        };
+        })
+        ;
     } else {return};
 };
 
