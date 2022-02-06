@@ -68,5 +68,48 @@ function toggleAddTodoPopup() {
 
 function setElementToActive(element) {
     return element.classList.toggle("active");
-}
-export {createElement, changeTextContent, createTodo, setElementToActive, submitProject};
+};
+
+function loadProject(project) {
+    const projectInfo = document.querySelector(".project-info");
+    const todosContainer = document.querySelector(".todos-container");
+
+    // Project description
+    const projectDescriptionContainer = createElement("div", "project-info-description");
+
+    const descriptionText = createElement("p", "description-text");
+    descriptionText.textContent = project.projectDescription;
+    projectDescriptionContainer.appendChild(descriptionText);
+
+    // Prepend to project-info
+    projectInfo.prepend(projectDescriptionContainer);
+
+    // Project title
+    const projectTitleContainer = createElement("div", "project-info-title");
+    const projectTitle = createElement("h2", "title-text");
+    projectTitle.textContent = project.projectName;
+    projectTitleContainer.appendChild(projectTitle);
+
+    // Prepend to project-info
+    projectInfo.prepend(projectTitleContainer);
+
+
+    if (project.projectTodos) {
+        for (let todo in project.projectTodos) {
+            console.log(todo);
+            createTodo(todo);
+        };
+    } else {return};
+};
+
+function clearPage() {
+   let projectTitleContainer = document.querySelector(".project-info-title");
+   let projectDescriptionContainer = document.querySelector(".project-info-description");
+
+   if (projectTitleContainer && projectDescriptionContainer) {
+       projectTitleContainer.remove();
+       projectDescriptionContainer.remove();
+       todoContainer.textContent = "";
+   } else {return};
+};
+export {createElement, changeTextContent, createTodo, setElementToActive, submitProject, loadProject, clearPage};
