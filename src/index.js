@@ -1,4 +1,4 @@
-import { createElement, createTodo, setElementToActive, submitProject} from "./modules/dom-handler";
+import { createElement, createTodo, setElementToActive, submitProject, loadProject, clearPage} from "./modules/dom-handler";
 
 console.log("hello world");
 //store all projects in a global list/object
@@ -63,9 +63,13 @@ document.addEventListener("click", function (event) {
     if (event.target.classList.contains("project")) {
         removeActiveFromAllProjects();
         setProjectToActive(event.target);
-        let currentActive = event.target;
         // load matching element's projectName, Description and To-dos to page after clearing page of current to-dos
-        loadProjectInfo();
+        clearPage();
+        projects.forEach(project => {
+            if (project.projectName == event.target.textContent) {
+                loadProject(project);
+            };
+        });
 
     // If user clicks submit to-do
     } else if (event.target.classList.contains("submit-todo")) {
@@ -77,13 +81,13 @@ document.addEventListener("click", function (event) {
         projects.forEach(project => {
             if (project.projectName == activeProject.textContent) {
                 project.projectTodos.push(todoText);
-            }
-        })
+            };
+        });
         createTodo(todoText);
         setElementToActive(addTodoBtn);
         setElementToActive(addTodoPopup);
         console.log(projects[0].projectTodos);
-    }
+    };
 });
 
 function setProjectToActive(projectEventTarget) {
@@ -98,13 +102,6 @@ function removeActiveFromAllProjects() {
     const projectsDivs = document.querySelectorAll(".project");
     for (let i = 0; i < projectsDivs.length; i++) {
         projectsDivs[i].classList.remove("active");
-    };
-};
-
-function clearPage() {
-    const projectInfoDiv = document.querySelector(".todos-container");
-    while (projectInfoDiv.firstChild) {
-        projectInfoDiv.removeChild(projectInfoDiv.lastChild);
     };
 };
 
