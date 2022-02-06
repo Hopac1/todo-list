@@ -65,11 +65,7 @@ document.addEventListener("click", function (event) {
         setProjectToActive(event.target);
         // load matching element's projectName, Description and To-dos to page after clearing page of current to-dos
         clearPage();
-        projects.forEach(project => {
-            if (project.projectName == event.target.textContent) {
-                loadProject(project);
-            };
-        });
+        loadCorrectProject(event.target);
 
     // If user clicks submit to-do
     } else if (event.target.classList.contains("submit-todo")) {
@@ -89,6 +85,14 @@ document.addEventListener("click", function (event) {
         console.log(projects[0].projectTodos);
     };
 });
+
+function loadCorrectProject(eventTarget) {
+    projects.forEach(project => {
+        if (project.projectName == eventTarget.textContent) {
+            loadProject(project);
+        };
+    });
+}
 
 function setProjectToActive(projectEventTarget) {
     if (projectEventTarget.classList.contains("active")) {
