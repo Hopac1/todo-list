@@ -31,17 +31,13 @@ function createTodo(todoText) {
     todoPanelRight.appendChild(timeSubmitted);
 
     // bin image
-    const bin = createElement("i", "fas fa-trash-alt");
+    const bin = createElement("i", "fas fa-trash");
     todoPanelRight.appendChild(bin);
     
 
     todo.appendChild(todoPanelLeft);
     todo.appendChild(todoPanelRight);
     todoContainer.appendChild(todo);
-};
-
-function removeTodo() {
-    // remove to-do
 };
 
 function submitProject() {
@@ -61,18 +57,12 @@ function submitProject() {
     setElementToActive(addProjectPopup);
 };
 
-function toggleAddTodoPopup() {
-    const addTodoBtn = document.querySelector(".add-todo");
-
-};
-
 function setElementToActive(element) {
     return element.classList.toggle("active");
 };
 
 function loadProject(project) {
     const projectInfo = document.querySelector(".project-info");
-    const todosContainer = document.querySelector(".todos-container");
 
     // Project description
     const projectDescriptionContainer = createElement("div", "project-info-description");
