@@ -52,9 +52,6 @@ submitProjectBtn.addEventListener("click", () => {
     newProject.projectDescription = document.getElementById("project-description-popup").value;
     projects.push(newProject);
     projects.forEach(element => console.log(element.projectName));
-    
-    // storeInfo(project);
-    // STORE SUBMITTED INFO, display on page when project is clicked
     submitProject();
 });
 
@@ -63,14 +60,12 @@ document.addEventListener("click", function (event) {
     if (event.target.classList.contains("project")) {
         removeActiveFromAllProjects();
         setProjectToActive(event.target);
-        // load matching element's projectName, Description and To-dos to page after clearing page of current to-dos
         clearPage();
         loadCorrectProject(event.target);
 
     // If user clicks submit to-do
     } else if (event.target.classList.contains("submit-todo")) {
         let todoText = document.querySelector(".todo-name").value;
-        // console.log(currentActive);
         // add to project that has active class
         let activeProject = document.querySelector(".active");
         console.log(activeProject);
@@ -83,7 +78,26 @@ document.addEventListener("click", function (event) {
         setElementToActive(addTodoBtn);
         setElementToActive(addTodoPopup);
         console.log(projects[0].projectTodos);
-    };
+
+    // If user wants to remove a todo
+    } else if (event.target.classList.contains("fa-trash")) {
+        // loop through active project's todos until project name matches active project textcontent
+        let activeProject = document.querySelector(".active");
+        projects.forEach(project => {
+            if (project.projectName == activeProject.textContent) {
+                project.projectTodos.forEach(todo => {
+                    if (todo == event.target.parentNode.parentNode.querySelector("p").textContent) {
+                        let index = project.projectTodos.indexOf(todo);
+                        if (index > -1) {
+                            project.projectTodos.splice(index, 1);
+                        }
+                        event.target.parentNode.parentNode.remove()
+                    }
+                })
+            }
+        })
+        console.log(event.target.parentNode.parentNode.querySelector("p").textContent)
+    }
 });
 
 function loadCorrectProject(eventTarget) {
@@ -116,14 +130,3 @@ function createProject() {
         projectTodos: [],
     };
 };
-
-// function loadProject(projectClicked) {
-//     const projectName = projectClicked.textContent;
-//     const projectInfo = document.querySelector(".project-info");
-//     projectInfo.textContent = `<div class="project-info-title">
-//     <h2>Example Project</h2></div>
-
-//     <div class="project-info-description">
-//     <p>${projectClicked}</p></div><div class="todos-container"><hr></div>
-//     `
-// };
