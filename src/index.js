@@ -81,7 +81,6 @@ document.addEventListener("click", function (event) {
 
     // If user wants to remove a todo
     } else if (event.target.classList.contains("fa-trash")) {
-        // loop through active project's todos until project name matches active project textcontent
         let activeProject = document.querySelector(".active");
         projects.forEach(project => {
             if (project.projectName == activeProject.textContent) {
@@ -97,6 +96,10 @@ document.addEventListener("click", function (event) {
             }
         })
         console.log(event.target.parentNode.parentNode.querySelector("p").textContent)
+
+    // If user wants to remove a project
+    } else if (event.target.classList.contains("fa-trash-alt")) {
+        event.target.parentNode.remove();
     }
 });
 
