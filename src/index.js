@@ -89,17 +89,24 @@ document.addEventListener("click", function (event) {
                         let index = project.projectTodos.indexOf(todo);
                         if (index > -1) {
                             project.projectTodos.splice(index, 1);
-                        }
-                        event.target.parentNode.parentNode.remove()
-                    }
-                })
-            }
-        })
-        console.log(event.target.parentNode.parentNode.querySelector("p").textContent)
+                        };
+                        event.target.parentNode.parentNode.remove();
+                    };
+                });
+            };
+        });
 
     // If user wants to remove a project
     } else if (event.target.classList.contains("fa-trash-alt")) {
         event.target.parentNode.remove();
+        projects.forEach(project => {
+            if (project.projectName == event.target.parentNode.textContent) {
+                let index = projects.indexOf(project);
+                if (index > -1) {
+                    projects.splice(index, 1);
+                };
+            };
+        });
     }
 });
 
