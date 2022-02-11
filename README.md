@@ -7,8 +7,6 @@ Project to-dos:
 
 - Major
 
-    - Implement remove to-do + project button logic.
-
     - Implement local storage.
 
     - Implement date submitted for to-dos.
@@ -18,5 +16,4 @@ Project to-dos:
 
     - Let user change to-do info upon clicking of chosen info.
 
-    - Add LinkedIn to footer.
 
