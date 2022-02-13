@@ -26,9 +26,11 @@ function createTodo(todoText) {
     todoPanelLeft.appendChild(pTag);
 
     // time to-do was submitted
-    const timeSubmitted = createElement("p", "time-submitted");
-    timeSubmitted.textContent = "5 mins ago";  // Generate actual date/time to-do was submitted
-    todoPanelRight.appendChild(timeSubmitted);
+    const todoDate = createElement("input", "todo-date");
+    todoDate.type = "date";
+    // todoDate = "date";
+
+    todoPanelRight.appendChild(todoDate);
 
     // bin image
     const bin = createElement("i", "fas fa-trash");
